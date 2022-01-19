@@ -1,26 +1,28 @@
 package com.example.demo.repository;
 
-import com.example.demo.model.Table;
+import com.example.demo.model.Ingredient;
 
 import java.util.List;
 
-public class TableRepository {
+public class IngredientRepository {
 
-    public Table read(int id) {
+
+    public Ingredient read(int id) {
         return null;
     }
 
 
-    public List<Table> readAll() {
+    public List<Ingredient> readAll() {
         return null;
     }
+
 
     public void create() {
 
     }
 
 
-    public Table update(int id, Table table) {
+    public Ingredient update(int id, Ingredient ingredient) {
         return null;
     }
 
@@ -28,5 +30,4 @@ public class TableRepository {
     public void delete(int id) {
 
     }
-
 }
