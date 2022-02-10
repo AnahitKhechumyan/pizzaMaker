@@ -1,20 +1,24 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Product;
-import com.example.demo.model.Table;
+import com.example.demo.model.dto.ProductDto;
 
 import java.util.List;
 
 public interface ProductService {
-    Product read(int id);
 
-    Product readByProductType(int pruductTypeId);
+    Product readProduct(int id);
 
-    List<Product> readAll();
+    ProductDto read(int id);
 
-    void create();
+    List<ProductDto> readAll();
 
-    Product update(int id, Product product);
+    List<ProductDto> readAllByProductType(int productTypeId);
+
+
+    void create(ProductDto productDto);
+
+    ProductDto update(int id, ProductDto productDto);
 
     void delete(int id);
 }
