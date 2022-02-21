@@ -2,9 +2,6 @@ package com.example.demo.model;
 
 import lombok.*;
 
-import java.util.Objects;
-
-
 @Getter
 @Setter
 @ToString
@@ -17,7 +14,5 @@ public class Table {
     private int number;
     private int seats;
     private boolean busy;
-
-
 }
 

@@ -1,18 +1,14 @@
 package com.example.demo.repository;
 
 import com.example.demo.model.Product;
-import com.example.demo.model.Table;
 import com.example.demo.model.dto.ProductDto;
 import com.example.demo.util.SQLConnector;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-
-import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 
 public class ProductRepository {
 
@@ -36,21 +32,14 @@ public class ProductRepository {
                     "where product_to_ingredient.product_id = ?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-
             data.addAll(listMapper(resultSet));
-
-
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
         return data;
     }
-
-
     public List<ProductDto> readAll() {
         List<ProductDto> data = new LinkedList<>();
-
         Connection connection = SQLConnector.getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("select product_type_id,\n" +
@@ -68,19 +57,13 @@ public class ProductRepository {
                     "                    on product_to_ingredient.ingredient_id = ingredient.id\n");
             ResultSet resultSet = preparedStatement.executeQuery();
             data.addAll(listMapper(resultSet));
-
-
             resultSet.close();
             connection.close();
-
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
         return data;
     }
-
-
     public void create(Product product) {
         Connection connection = SQLConnector.getConnection();
         try {
@@ -98,8 +81,6 @@ public class ProductRepository {
             sqlException.printStackTrace();
         }
     }
-
-
     public Product update(Product product) {
         Connection connection = SQLConnector.getConnection();
         try {
@@ -113,14 +94,11 @@ public class ProductRepository {
             int i = preparedStatement.executeUpdate();
             preparedStatement.close();
             connection.close();
-
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
         return product;
     }
-
-
     public void delete(int id) {
         Connection connection = SQLConnector.getConnection();
         try {
@@ -132,9 +110,7 @@ public class ProductRepository {
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
-
     }
-
     private List<ProductDto> listMapper(ResultSet resultSet) throws SQLException {
         List<ProductDto> data = new LinkedList<>();
         while (resultSet.next()) {
@@ -142,7 +118,6 @@ public class ProductRepository {
         }
         return data;
     }
-
     private ProductDto mapper(ResultSet resultSet) throws SQLException {
         ProductDto pDto = new ProductDto();
         pDto.setProductTypeId(resultSet.getInt("product_type_id"));
@@ -153,8 +128,6 @@ public class ProductRepository {
         pDto.setPrice(resultSet.getFloat("price"));
         pDto.setImagePath(resultSet.getString("image_path"));
         pDto.setCurrency(resultSet.getString("currency"));
-
         return pDto;
     }
-
 }

@@ -18,7 +18,6 @@ public class OrderServiceImpl implements OrderService {
     public void create(Order order) {
         orderRepository.create(order);
     }
-
     @Override
     public OrderDto read(int tableId) {
         OrderDto data = new OrderDto();
@@ -28,17 +27,14 @@ public class OrderServiceImpl implements OrderService {
         data.setQuantity(fromDb.get(0).getQuantity());
         data.setProducts(new LinkedList<>());
         int amount = 0;
-
         for (Order item : fromDb) {
             Product product = productService.readProduct(item.getProductId());
             amount += item.getQuantity() * product.getPrice();
             data.getProducts().add(product);
         }
         data.setAmount(amount);
-
         return data;
     }
-
     @Override
     public List<OrderDto> readAll() {
         List<Order> fromDb = orderRepository.readAll();
@@ -56,39 +52,26 @@ public class OrderServiceImpl implements OrderService {
                 Product product = productService.readProduct(item.getProductId());
                 orderDto.getProducts().add(product);
                 orderDto.setAmount(orderDto.getAmount() + product.getPrice() * item.getQuantity());
-
-
             } else {
                 OrderDto orderDto = new OrderDto();
                 orderDto.setTableId(item.getTableId());
                 orderDto.setInProcess(item.isInProcess());
                 orderDto.setProducts(new LinkedList<>());
-
                 Product product = productService.readProduct(item.getProductId());
                 orderDto.getProducts().add(product);
                 orderDto.setAmount(item.getQuantity() * product.getPrice());
                 data.add(orderDto);
-
             }
-
-            // checked identifier
             item.setId(-1);
         });
-
-
         return data;
     }
-
     @Override
     public Order update(Order order) {
         return orderRepository.update(order);
     }
-
     @Override
     public void delete(int tableId) {
-
         orderRepository.delete(tableId);
     }
-
-
 }

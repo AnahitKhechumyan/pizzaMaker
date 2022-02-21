@@ -14,7 +14,6 @@ public class SQLConnector {
 
     public SQLConnector() {
     }
-
     public static Connection getConnection(){
         try {
             if(connection==null || connection.isClosed()){

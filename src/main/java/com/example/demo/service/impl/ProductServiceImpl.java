@@ -7,7 +7,6 @@ import com.example.demo.model.dto.ProductDto;
 import com.example.demo.repository.ProductRepository;
 import com.example.demo.repository.ProductToIngredientRepository;
 import com.example.demo.service.ProductService;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,9 +15,6 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl implements ProductService {
     ProductRepository productRepository = new ProductRepository();
     ProductToIngredientRepository productToIngredientRepository = new ProductToIngredientRepository();
-
-
-
 
     @Override
     public Product readProduct(int id) {
@@ -85,8 +81,6 @@ public class ProductServiceImpl implements ProductService {
             item.setId(-1);
 
         });
-
-
         return data;
     }
 
@@ -116,8 +110,6 @@ public class ProductServiceImpl implements ProductService {
         });
 
     }
-
-
     @Override
     public ProductDto update(int id, ProductDto productDto) {
         if (productRepository.read(id) != null) {

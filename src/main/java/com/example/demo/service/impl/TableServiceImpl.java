@@ -3,7 +3,6 @@ package com.example.demo.service.impl;
 import com.example.demo.model.Table;
 import com.example.demo.repository.TableRepository;
 import com.example.demo.service.TableService;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

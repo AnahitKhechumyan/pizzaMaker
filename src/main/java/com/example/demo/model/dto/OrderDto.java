@@ -1,9 +1,7 @@
 package com.example.demo.model.dto;
 
-
 import com.example.demo.model.Product;
 import lombok.*;
-
 import java.util.List;
 
 @Getter
@@ -14,13 +12,8 @@ import java.util.List;
 @NoArgsConstructor
 public class OrderDto {
     private int tableId;
-
     private boolean inProcess;
-
     private int quantity;
-
     private float amount;
-
     private List<Product> products;
-
 }

@@ -3,7 +3,6 @@ package com.example.demo.service.impl;
 import com.example.demo.model.ProductType;
 import com.example.demo.repository.ProductTypeRepository;
 import com.example.demo.service.ProductTypeService;
-
 import java.util.List;
 
 public class ProductTypeServiceImpl implements ProductTypeService {

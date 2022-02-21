@@ -1,11 +1,6 @@
 package com.example.demo.model;
 
-
 import lombok.*;
-
-import java.util.Objects;
-
-
 
 @Getter
 @Setter
@@ -15,10 +10,6 @@ import java.util.Objects;
 @NoArgsConstructor
 
 public class ProductType {
-
        private int id;
        private String name;
-
-
-
 }

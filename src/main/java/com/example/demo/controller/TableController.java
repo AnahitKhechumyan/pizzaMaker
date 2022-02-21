@@ -13,22 +13,14 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-
 public class TableController extends HttpServlet {
     private final TableService tableService = new TableServiceImpl();
     private final Gson gson = new Gson();
-
-
-    /**
-     * * this method is getting parameters from request with name (url) and with switch case and maps request for concrete case
-     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AccessControlOriginFilter.setAccessControlHeaders(resp);
-
         List<Table> data = new LinkedList<>();
         final String url = req.getParameter("url");
-
         switch (url) {
             case "get-all":
                 data = tableService.readAll();
@@ -52,17 +44,14 @@ public class TableController extends HttpServlet {
                 resp.sendError(404, "provided URL not found for analyse");
                 break;
         }
-
         resp.getWriter().println(gson.toJson(data));
     }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AccessControlOriginFilter.setAccessControlHeaders(resp);
         Table table = mapper(req);
         tableService.create(table);
     }
-
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AccessControlOriginFilter.setAccessControlHeaders(resp);
@@ -72,22 +61,17 @@ public class TableController extends HttpServlet {
                 getWriter().
                 println(gson.toJson(tableService.update(id, table)));
     }
-
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AccessControlOriginFilter.setAccessControlHeaders(resp);
         int id = Integer.parseInt(req.getParameter("id"));
         tableService.delete(id);
-
     }
-
-
     private Table mapper(HttpServletRequest req) {
         int id;
         int number;
         int seats;
         boolean isBusy;
-
         try {
             id = Integer.parseInt(req.getParameter("id"));
         } catch (NumberFormatException ex) {
@@ -104,7 +88,6 @@ public class TableController extends HttpServlet {
             seats = 0;
         }
         isBusy = Boolean.parseBoolean(req.getParameter("is-busy"));
-
         Table table = new Table(id, number, seats, isBusy);
         return table;
     }

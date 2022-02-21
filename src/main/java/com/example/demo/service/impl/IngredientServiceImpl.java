@@ -3,7 +3,6 @@ package com.example.demo.service.impl;
 import com.example.demo.model.Ingredient;
 import com.example.demo.repository.IngredientRepository;
 import com.example.demo.service.IngredientService;
-
 import java.util.List;
 
 public class IngredientServiceImpl implements IngredientService {
@@ -22,8 +21,6 @@ public class IngredientServiceImpl implements IngredientService {
     public Ingredient read(String name) {
         return ingredientRepository.read(name);
     }
-
-
     @Override
     public void create(Ingredient ingredient) {
         if (ingredient==null){
@@ -32,8 +29,6 @@ public class IngredientServiceImpl implements IngredientService {
         ingredient.setId(0);
         ingredientRepository.create(ingredient);
     }
-
-
     @Override
     public Ingredient update(int id, Ingredient ingredient) {
         if (ingredientRepository.read(id)!=null){
@@ -42,7 +37,6 @@ public class IngredientServiceImpl implements IngredientService {
         }
         return null;
     }
-
     @Override
     public void delete(int id) {
         ingredientRepository.delete(id);

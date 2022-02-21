@@ -1,11 +1,8 @@
 package com.example.demo.model.dto;
 
-
 import com.example.demo.model.Ingredient;
 import lombok.*;
-
 import java.util.List;
-
 
 
 @Getter
@@ -23,7 +20,5 @@ public class ProductDto {
     private transient String ingredientName;
     private String imagePath;
     private String currency;
-
     List<Ingredient> ingredients ;
-
 }

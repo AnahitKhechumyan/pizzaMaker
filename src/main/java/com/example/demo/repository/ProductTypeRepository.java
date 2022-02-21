@@ -74,17 +74,13 @@ public class ProductTypeRepository {
           Connection connection = SQLConnector.getConnection();
           PreparedStatement pstmt = null;
           ResultSet resultSet = null;
-
           try {
                pstmt = connection.prepareStatement("SELECT * from `product_type`");
                resultSet = pstmt.executeQuery();
           } catch (SQLException sqlException) {
                sqlException.printStackTrace();
           }
-
           List<ProductType> data = mapperList(resultSet);
-
-
           try {
                pstmt.close();
                resultSet.close();
@@ -92,50 +88,36 @@ public class ProductTypeRepository {
           } catch (SQLException sqlException) {
                sqlException.printStackTrace();
           }
-
           return data;
      }
      public void create(ProductType productType) {
           Connection connection = SQLConnector.getConnection();
-
           try {
                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `product_type` values (0,?)");
-
                preparedStatement.setString(1, productType.getName());
-
-
                int i = preparedStatement.executeUpdate();
-
                preparedStatement.close();
                connection.close();
-
           } catch (SQLException exception) {
                exception.printStackTrace();
           }
-
      }
      public ProductType update(int id, ProductType productType) {
-
           Connection connection = SQLConnector.getConnection();
           try {
                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `product_type` SET name = ? WHERE id = ?");
                preparedStatement.setString(1,productType.getName());
                preparedStatement.setInt(2,productType.getId());
-
                int i = preparedStatement.executeUpdate();
-
                preparedStatement.close();
-
           } catch (SQLException exception) {
                exception.printStackTrace();
           }
-
           try {
                connection.close();
           } catch (SQLException exception) {
                exception.printStackTrace();
           }
-
           return productType;
      }
      public void delete(int id) {
@@ -144,14 +126,12 @@ public class ProductTypeRepository {
                PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM `product_type` where id=?");
                preparedStatement.setInt(1, id);
                int i = preparedStatement.executeUpdate();
-
                preparedStatement.close();
                connection.close();
           } catch (SQLException exception) {
                exception.printStackTrace();
           }
      }
-
      private static List<ProductType> mapperList(ResultSet resultSet) {
           List<ProductType> data = new LinkedList<>();
           try {

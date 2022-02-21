@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface TableService {
 
-
   Table read(int id);
 
   List<Table> readAll();
